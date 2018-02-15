@@ -1,4 +1,6 @@
-##### Creating a API, Database and frontend
+### Creating a API, Database and frontend
+---
+A Project for mainly for learning HapiJS, using React and mongodb.
 
 ### Using
 - hapijs
