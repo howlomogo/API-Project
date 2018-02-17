@@ -19,7 +19,8 @@ const config = {
     devServer: {
       contentBase: path.join(__dirname, "./client/dist"),
       port: 8080,
-      open: true
+      open: true,
+      historyApiFallback: true // For browserRouter to work correctly with urls HistoryAPIfall needs to be true for the webpackdev server, you can use hash router locally to not have this. See https://webpack.js.org/configuration/dev-server/#devserver-historyapifallback
     }
 };
 module.exports = config;
