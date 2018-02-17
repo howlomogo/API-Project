@@ -29,7 +29,7 @@ server.route({
 // Get All tasks from the mongo database, this is used in Tasks.jsx axios request
 server.route({
   method: 'GET',
-  path: '/api/tasks',
+  path: '/api/tasks/view',
   handler: (request, reply) => {
     let tasks = Task.find((err, tasks) => {
       reply(tasks)
@@ -40,7 +40,7 @@ server.route({
 // Post Tasks Route - listen for the form post request to /tasks
 server.route({
   method: 'POST',
-  path: '/tasks',
+  path: '/api/tasks/add',
   handler: (request, reply) => {
     // Get the text coming from the form with payload - name = text
     let text = request.payload.somerandomtext
@@ -52,7 +52,25 @@ server.route({
         return console.log(err)
       }
       // redirect to homepage if successful
-      return reply.redirect().location('http://localhost:8080')
+      return reply.redirect().location('http://localhost:8080/tasks')
+    })
+  }
+})
+
+// Delete Tasks Route - listen for the form post request to /tasks
+server.route({
+  method: 'DELETE',
+  path: '/api/tasks/remove',
+  handler: (request, reply) => {
+    Task.findOneAndRemove({ _id: request.payload.taskId }, (err, task) => {
+      if(task === null) {
+        reply('No task to remove') // Only really need reply() here, but you can reply with something like this if we wanna check the delete was successful
+      } else {
+        reply('Task Removed')
+      }
+      if(err) {
+        throw err
+      }
     })
   }
 })
