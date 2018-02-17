@@ -29,7 +29,7 @@ server.route({
 // Get All tasks from the mongo database, this is used in Tasks.jsx axios request
 server.route({
   method: 'GET',
-  path: '/tasks',
+  path: '/api/tasks',
   handler: (request, reply) => {
     let tasks = Task.find((err, tasks) => {
       reply(tasks)

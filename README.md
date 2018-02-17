@@ -17,3 +17,7 @@ A Project for mainly for learning HapiJS, using React and mongodb.
 # Details
 - Backend runs on localhost:3000
 - Front end runs on localhost:8080
+
+
+### Todos
+- set up 404's

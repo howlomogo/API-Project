@@ -4,10 +4,12 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Home Page</h2>
-        <hr />
-        <h4>This is the home page...</h4>
+      <div className="row">
+        <div className="col-md-12">
+          <h2>Home Page</h2>
+          <hr />
+          <p>This is the home page...</p>
+        </div>
       </div>
     )
   }

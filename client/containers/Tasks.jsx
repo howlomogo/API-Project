@@ -10,7 +10,7 @@ class Tasks extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/tasks')
+    axios.get('http://localhost:3000/api/tasks')
       .then((response) => {
         // return the tasks from http://localhost:3000/tasks
         console.log('---response.data', response.data)
@@ -23,19 +23,21 @@ class Tasks extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Tasks Page</h2>
-        <hr />
-        <h4>Your tasks are...</h4>
-        <ul>
-          {this.state.tasks.map((task, index) =>
-            <li key={index}>{task.text}</li>
-          )}
-        </ul>
-        <form action="http://localhost:3000/tasks" method="post">
-          Firstname: <input type="text" name="somerandomtext" /><br />
-          <input type="submit" value="Submit"/>
-        </form>
+      <div className="row">
+        <div className="col-md-12">
+          <h2>Tasks Page</h2>
+          <hr />
+          <p>Your tasks are...</p>
+          <ul>
+            {this.state.tasks.map((task, index) =>
+              <li key={index}>{task.text}</li>
+            )}
+          </ul>
+          <form action="http://localhost:3000/api/tasks" method="post">
+            Firstname: <input type="text" name="somerandomtext" /><br />
+            <input className="btn btn-primary" type="submit" value="Submit"/>
+          </form>
+        </div>
       </div>
     )
   }
