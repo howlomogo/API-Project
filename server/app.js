@@ -51,7 +51,7 @@ server.route({
       if(err) {
         return console.log(err)
       }
-      // redirect to homepage if successful
+      // redirect to homepage if successful, we COULD just update state in the front end here and add an axios Post request
       return reply.redirect().location('http://localhost:8080/tasks')
     })
   }

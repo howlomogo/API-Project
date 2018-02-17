@@ -60,9 +60,10 @@ class Tasks extends Component {
               </div>
             )}
           </div>
-          <form action="http://localhost:3000/api/tasks/add" method="post">
-            Firstname: <input type="text" name="somerandomtext" /><br />
-            <input className="btn btn-primary" type="submit" value="Submit"/>
+          <form className="form-inline" action="http://localhost:3000/api/tasks/add" method="post">
+              <label for="firstname" className="mr-3">Firstname:</label>
+              <input className="form-control mr-3" type="text" name="somerandomtext" id="firstname" />
+              <input className="btn btn-primary" type="submit" value="Submit"/>
           </form>
         </div>
       </div>
