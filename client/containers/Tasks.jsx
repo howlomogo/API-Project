@@ -50,7 +50,7 @@ class Tasks extends Component {
             {this.state.tasks.map((task, index) =>
               <div key={index} className="col-md-4">
                 <div className="card mb-4">
-                  {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
+                  <img className="card-img-top" src="http://i.dailymail.co.uk/i/pix/2017/06/19/08/418A5EC000000578-4616962-image-a-2_1497857437851.jpg" alt="coop" />
                   <div className="card-block">
                     <h4 className="card-title">{task.text}</h4>
                     <p className="card-text">{task._id}</p>
@@ -61,7 +61,7 @@ class Tasks extends Component {
             )}
           </div>
           <form className="form-inline" action="http://localhost:3000/api/tasks/add" method="post">
-              <label for="firstname" className="mr-3">Firstname:</label>
+              <label htmlFor="firstname" className="mr-3">Firstname:</label>
               <input className="form-control mr-3" type="text" name="somerandomtext" id="firstname" />
               <input className="btn btn-primary" type="submit" value="Submit"/>
           </form>

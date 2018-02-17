@@ -21,3 +21,4 @@ A Project for mainly for learning HapiJS, using React and mongodb.
 
 ### Todos
 - set up 404's
+- add user to frontend with axios
