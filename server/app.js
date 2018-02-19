@@ -45,6 +45,7 @@ server.route({
   method: 'POST',
   path: '/api/users/add',
   handler: (request, reply) => {
+    console.log('---request', request)
     let newUser = new User({
       firstname:request.payload.data.firstname,
       lastname:request.payload.data.lastname
@@ -73,6 +74,25 @@ server.route({
       if(err) {
         throw err
       }
+    })
+  }
+})
+
+// Update User Route
+server.route({
+  method: 'PUT',
+  path: '/api/users/update',
+  handler: (request, reply) => {
+    User.findOneAndUpdate(
+      { _id: request.payload.data.userId },
+      {
+        firstname: request.payload.data.firstname,
+        lastname: request.payload.data.lastname
+      }, (err, user) => {
+      if(err) {
+        throw err
+      }
+      reply('User Updated')
     })
   }
 })
