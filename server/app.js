@@ -4,8 +4,11 @@ mongoose.connect('mongodb://localhost/taskdb')
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error(err))
 
-// Create Task Model
-const Task = mongoose.model('Task', {text:String})
+// Create User Model
+const User = mongoose.model('User', {
+  firstname: String,
+  lastname: String
+})
 
 // Init Server
 const server = new Hapi.Server()
@@ -26,47 +29,46 @@ server.route({
   }
 })
 
-// Get All tasks from the mongo database, this is used in Tasks.jsx axios request
+// Get All users from the mongo database, this is used in Users.jsx axios request
 server.route({
   method: 'GET',
-  path: '/api/tasks/view',
+  path: '/api/users/view',
   handler: (request, reply) => {
-    let tasks = Task.find((err, tasks) => {
-      reply(tasks)
+    let users = User.find((err, users) => {
+      reply(users)
     })
   }
 })
 
-// Post Tasks Route - listen for the form post request to /tasks
+// Post Users Route - listen for the form post request to /users
 server.route({
   method: 'POST',
-  path: '/api/tasks/add',
+  path: '/api/users/add',
   handler: (request, reply) => {
-    // Get the text coming from the form with payload - name = text
-    let text = request.payload.somerandomtext
-    let newTask = new Task({
-      text:text
+    let newUser = new User({
+      firstname:request.payload.data.firstname,
+      lastname:request.payload.data.lastname
     })
-    newTask.save((err, task) => {
+    newUser.save((err, user) => {
       if(err) {
         return console.log(err)
+      } else {
+        reply('User Added')
       }
-      // redirect to homepage if successful, we COULD just update state in the front end here and add an axios Post request
-      return reply.redirect().location('http://localhost:8080/tasks')
     })
   }
 })
 
-// Delete Tasks Route - listen for the form post request to /tasks
+// Delete Users Route - listen for the form post request to /users
 server.route({
   method: 'DELETE',
-  path: '/api/tasks/remove',
+  path: '/api/users/remove',
   handler: (request, reply) => {
-    Task.findOneAndRemove({ _id: request.payload.taskId }, (err, task) => {
-      if(task === null) {
-        reply('No task to remove') // Only really need reply() here, but you can reply with something like this if we wanna check the delete was successful
+    User.findOneAndRemove({ _id: request.payload.userId }, (err, user) => {
+      if(user === null) {
+        reply('No user to remove') // Only really need reply() here, but you can reply with something like this if we wanna check the delete was successful
       } else {
-        reply('Task Removed')
+        reply('User Removed')
       }
       if(err) {
         throw err
